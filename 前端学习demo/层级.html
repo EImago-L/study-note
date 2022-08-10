@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .parent {
+            position: relative;
+            z-index: 1;
+        }
+        .parent div {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: relative;
+            z-index: 3;
+        }
+        .box {
+            width: 100px;
+            height: 100px;
+            background: greenyellow;
+            z-index: 2;
+            margin-top: -10px;
+        }
+    </style>
+</head>
+<body>
+<div class="parent">
+    <div>div1</div>
+</div>
+<div class="box">box div</div>
+</body>
+</html>
