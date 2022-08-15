@@ -1,0 +1,34 @@
+body, section, p, nav, header, h2, h3, h4, h5 {
+    margin: 0;
+}
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+input {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    border: none;
+    vertical-align: middle;
+}
+
+.clearfix:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+body {
+    font-size: 14px;
+    font-family: "微软雅黑";
+}
+
+.center {
+    width: 118px;
+    margin: 0 auto;
+}
