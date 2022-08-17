@@ -28,7 +28,157 @@ body {
     font-family: "微软雅黑";
 }
 
+header {
+    margin-bottom: 18px;
+}
+
 .center {
-    width: 118px;
+    width: 1181px;
     margin: 0 auto;
 }
+
+a {
+  text-decoration: none;
+}
+/*header*/
+
+.login {
+    text-align: right;
+    padding: 2px 0 2px 0;
+
+}
+
+.login a {
+    font: 12px/21px "微软雅黑";
+    color: #6e6464;
+    padding: 0 10px 0 12px;
+    border-right: 1px solid #f2f2f2;
+}
+
+.login a.noborder {
+    border: none;
+}
+.login img {
+    vertical-align: top;
+}
+
+.logo {
+    float: left;
+    margin: 5px 14px 0 2px;
+}
+
+.searchBox {
+    float: left;
+}
+.searchBox p {
+    padding-bottom: 10px;
+}
+.searchBox p a{
+    font: 14px/14px "微软雅黑";
+    color: #555555;
+    margin-right: 14px;
+}
+
+.searchBox div {
+    font-size: 0;
+}
+
+.searchBox .text {
+    width: 453px;
+    height: 32px;
+    font: 14px/32px "微软雅黑";
+    border: 1px solid #b8b8b8;
+    vertical-align: top;
+}
+
+.searchBox .btn {
+    width: 97px;
+    font: 16px/32px "微软雅黑";
+    border: 1px solid #cccccc;
+    border-left: none;
+    margin-right: 13px;
+    background: url("../images/line_bg.gif") repeat-x;
+}
+
+.searchBox .ask {
+    font-size: 14px;
+    color: #3c7ce0;
+    text-decoration: underline;
+}
+
+/*nav*/
+nav {
+    height: 40px;
+    background: url("../images/nav_bg.gif");
+}
+nav ul {
+    float: left;
+}
+nav li {
+    float: left;
+    padding: 0 70px;
+    border-right: 1px solid #09a800;
+}
+
+nav li a {
+    color: #fff;
+    font: 18px/40px "微软雅黑";
+}
+
+nav li a.active, nav li a:hover{
+    color: #faff64;
+}
+
+nav .center div {
+    float: right;
+}
+
+nav .center div a {
+    color: #fff;
+    font: 16px/40px "微软雅黑";
+    padding-left: 23px;
+    margin-right: 30px;
+    background: url("../images/ico_02.gif") no-repeat left;
+}
+
+nav .center div a.phone {
+    background: url("../images/ico_03.gif") no-repeat left;
+}
+
+/*banner*/
+#banner {
+    background: #efecda url("../images/banner.jpg") center no-repeat;
+}
+
+#banner .center {
+    height: 400px;
+    position: relative;
+}
+
+#banner .title {
+    width: 496px;
+    height: 56px;
+    padding: 2px 0 6px 7px;
+    background: rgba(0,0,0,0.5);
+    position: absolute;
+    top: 220px;
+}
+
+#banner .title h2 {
+    font: 30px/37px "微软雅黑";
+}
+
+#banner .title h2 a {
+    color: #fff;
+}
+
+#banner .title span {
+    font: 12px/19px "微软雅黑";
+}
+
+#banner .title span a {
+    color: #fff;
+}
+
+
+
