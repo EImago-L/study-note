@@ -1,24 +1,4 @@
-# **设计模式**
-
-[人人都懂设计模式](https://item.jd.com/12580392.html)一书中学习过程中的笔记总结。
-
-
-
-## **监听模式**
-
-> 在对象间定义一种一对多的依赖关系，当这个对象状态发生改变时，所有依赖它的对象都会被通知更新。
-
-监听模式又名观察者模式，**属于行为模式**，又叫发布/订阅（Publish/Subscribe）模式、模型/视图模式（Model/View）模式、源/监听（Source/Listener）模式或从属者（Dependents）模式。
-
-举个例子：一款热水器，它拥有洗澡模式和烧开水模式，洗澡模式的水温在50℃~70℃，烧开水模式在100℃，到达相应的温度就会进行提醒。这里的热水器就是被观察者（Observable），洗澡模式和烧开水模式就是观察者（Observer）
-
-
-
-### **类图及代码实现**
-
-![image-20220820175303914](设计模式.assets/image-20220820175303914.png)
-
-```python
+import time
 from abc import ABCMeta, abstractmethod
 
 class Observer(metaclass=ABCMeta):
@@ -78,44 +58,6 @@ class DrinkingMode(Observer):
             observable.get_temperature() >= 100:
             print('水烧开了 快来喝吧')
 
-if __name__ == '__main__':
-    # 测试代码
-    heater = WaterHeater()
-    washing_obser = WashingMode()
-    drinking_obser = DrinkingMode()
-    heater.add_observer(washing_obser)
-    heater.add_observer(drinking_obser)
-    heater.set_temperature(40)
-    heater.set_temperature(60)
-    heater.set_temperature(100)
-```
-
-
-
-### **设计要点**
-
-1. 明确观察者和被观察者
-2. Observable发送广播通知时无需指定具体的Observer，Observer可以自己决定是否订阅Subject的通知
-3. 被观察者至少需要有3个方法：添加观察者、删除观察者、通知观察者。观察者至少要有一个方法：更新方法
-
-
-
-### **推模型和拉模型**
-
-监听模式根据其侧重功能还可以分为推模型和拉模型。
-
-推模型：Observable向Observer推送主题的详细信息，不管Observer是否需要，推送的信息通常是主题对象的全部或部分数据。这种模型中，会把Observable对象中的全部或部分信息通过update的参数传递给Observer。
-
-拉模型：Observable在通知Observer时只传递少量信息。如果Observer需要更具体的信息，由Observer到Observable对象中获取。
-
-
-
-### **实战应用模拟**
-
-登录异常的检测与提醒
-
-```python
-import time
 
 class Account(Observable):
     """用户账号"""
@@ -167,19 +109,17 @@ class EmailSender(Observer):
               f"{time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime(object_['time']))}")
 
 if __name__ == '__main__':
+    # heater = WaterHeater()
+    # washing_obser = WashingMode()
+    # drinking_obser = DrinkingMode()
+    # heater.add_observer(washing_obser)
+    # heater.add_observer(drinking_obser)
+    # heater.set_temperature(40)
+    # heater.set_temperature(60)
+    # heater.set_temperature(100)
+
     account = Account()
     account.add_observer(SmsSender())
     account.add_observer(EmailSender())
     account.login('jayeLiao', '101.47.18.5', time.time())
     account.login('jayeLiao', '67.217.61.8', time.time())
-```
-
-
-
-### **应用场景**
-
-1. 对一个对象状态或数据的更新需要其他对象同步更新，或者一个对象的更新需要依赖另一个对象的更新。
-2. 对象仅需要将自己的更新通知给其他对象而不需要知道其他对象的细节，如消息推送
-
-注意：学习设计模式应该领悟其设计思想而不是局限于代码层面。
-
