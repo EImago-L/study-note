@@ -180,5 +180,107 @@ nav .center div a.phone {
     color: #fff;
 }
 
+#banner ul {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+}
 
+#banner li {
+    float: left;
+    width: 209px;
+    padding: 7px 20px 7px 7px;
+    background: rgba(255, 255, 255, 0.9);
+    margin-right: 18px;
+    display: table;
+}
+
+#banner li img {
+    float: left;
+    margin-right: 13px;
+}
+
+#banner li a {
+    font: 15px/24px "微软雅黑";
+    color: #373c35;
+}
+
+#banner li p {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.slogin {
+    width: 270px;
+    position: absolute;
+    right: 0;
+    top: 20px;
+    padding-top: 15px;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.subTitle {
+    margin: 0 20px 0 20px;
+    border-bottom: 1px dotted #bfbfbd;
+}
+
+.subTitle h3 {
+    float: left;
+    font: 16px/39px "微软雅黑";
+}
+
+.subTitle a {
+    float: right;
+    line-height: 39px;
+}
+
+#banner .text {
+    font: bold 24px/38px "微软雅黑";
+    margin: 45px 23px 34px 17px;
+    color: #42c166;
+    background: url("../images/know_bg.gif") no-repeat right;
+}
+
+#banner .number {
+    text-align: center;
+    font: 12px/42px "微软雅黑";
+    color: #3e4346;
+    vertical-align: middle;
+}
+
+#banner .number span {
+    font-size: 23px;
+    color: #e96c29;
+    vertical-align: middle;
+    margin: 0 12px;
+}
+
+#banner .know {
+    font: 14px/32px "微软雅黑";
+    text-align: center;
+}
+
+#banner .know a{
+    color: #787878;
+    text-decoration: underline;
+}
+
+#banner .subNav {
+    height: 60px;
+    background: #59cd78;
+    text-align: center;
+    font-size: 0;
+}
+
+#banner .subNav a {
+    font: 16px/60px "微软雅黑";
+    color: #fff;
+    padding-left: 17px;
+    background: url("../images/ico_05.gif") no-repeat left;
+}
+
+#banner .subNav a.answer {
+    background: url("../images/ico_06.gif") no-repeat 50px;
+    padding-left: 70px;
+}
 
