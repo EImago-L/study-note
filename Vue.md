@@ -180,3 +180,71 @@ VM：视图模型（ViewModel）：Vue实例
 </body>
 ```
 
+
+
+### **数据代理**
+
+#### **回顾Object.defineProperty方法**
+
+```javascript
+let person = {
+        name: 'jayeLiao',
+        sex:'male'
+    }
+    Object.defineProperty(person, 'age', {
+        //value:21,           //属性的值
+        //enumerable: true,   //属性是否可以被枚举
+        //writable: true,     //属性是否可以修改值
+        //configurable: true,  //属性是否可以被删除
+
+        //当有人读取person的age属性时， get函数（getter）就会被调用， 且返回值就是age的值
+        get() {
+            console.log('有人读取了age属性')
+            return 21s;
+        },
+
+        //当有人修改person的age属性时，set函数（setter）就会被调用，且会收到修改的具体值
+        set(v) {
+            console.log('有人修改了age属性的值，值是', v)
+        }
+    })
+```
+
+
+
+### **事件处理**
+
+1. 使用`v-on:XXX` 或 `@XXX` 绑定事件，其中XXX是事件名
+2. 事件的回调需要配置在methods对象中，最终会在vm上
+3. methods中配置的函数，不要用箭头函数，否者this就不是vm了
+4. methods中配置的函数，都是被Vue所管理的函数，this的指向是vm 或 组件实例对象
+5. `@click="demo"` 和 `@click=“demo($event)”`效果一致，但后者可以传参
+
+```html
+<body>
+<div id="root">
+    <h1>hello,{{name}}</h1>
+    <button v-on:click="showInfo1">点我提示信息1（不传参）</button>
+    //简写
+    <button @click="showInfo2($event, 66)">点我提示信息2（传参）</button>
+</div>
+<script>
+    const vm = new Vue({
+        el:'#root',
+        data:{
+            name:'JayeLiao'
+        },
+        methods:{
+            showInfo1(){
+                console.log('hello hello')
+            },
+            showInfo2(t, num){
+                console.log(t)
+                console.log(num)
+            }
+        }
+    })
+</script>
+</body>
+```
+
