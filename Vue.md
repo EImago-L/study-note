@@ -248,3 +248,90 @@ let person = {
 </body>
 ```
 
+
+
+### **事件修饰符**
+
+1. prevent：阻止默认事件
+2. stop：阻止事件冒泡
+3. once：事件只触发一次
+4. capture：使用事件的捕获模式
+5. self：只有event.target是当前操作的元素时才触发事件
+6. passive：事件的默认行为立即执行，无需等待事件回调执行完毕
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        *{
+            margin-top: 20px;
+        }
+        .demo1{
+            height: 50px;
+            background-color: skyblue;
+        }
+        .box1{
+            padding: 5px;
+            background-color: skyblue;
+        }
+        .box2{
+            padding: 5px;
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <h2>hellow {{name}}</h2>
+
+<!--         阻止默认行为-->
+        <a href="https://www.strongforu.top" @click.prevent="showInfo">点我去另一个地方</a>
+
+<!--        阻止事件冒泡-->
+        <div class="demo1" @click="showInfo">
+            <button @click.stop="showInfo">点我提示信息</button>
+        </div>
+
+<!--        事件只触发一次-->
+        <button @click.once="showInfo">click me</button>
+
+<!--        使用事件捕获模式-->
+        <div class="box1" @click.capture="showMsg(1)">
+            div1
+            <div class="box2" @click="showMsg(2)">
+                div2
+            </div>
+        </div>
+
+<!--        只有event.traget是当前操作的元素时才会触发事件-->
+        <div class="demo1" @click.self="showInfo2">
+            <button @click="showInfo2">点我提示信息</button>
+        </div>
+    </div>
+    <script>
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                name:'JayeLiao'
+            },
+            methods:{
+                showInfo(){
+                    alert('hello hello')
+                },
+                showMsg(msg){
+                    console.log(msg)
+                },
+                showInfo2(event){
+                    console.log(event.target)
+                }
+            }
+        })
+    </script>
+</body>
+</html>
+```
+
