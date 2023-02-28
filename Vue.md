@@ -404,3 +404,94 @@ let person = {
 </html>
 ```
 
+
+
+### **姓名案例**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+    first name: <input type="text" v-model="firstName"><br>
+    last name: <input type="text" v-model="lastName"><br>
+    full name: <span>{{getFullName()}}</span>
+</div>
+<script>
+    const vm = new Vue({
+        el:'#root',
+        data:{
+            firstName:'Jaye',
+            lastName:'Liao'
+        },
+        methods:{
+            getFullName(){
+                return this.firstName + '-' + this.lastName
+            }
+        }
+    })
+</script>
+</body>
+</html>
+```
+
+当data中的数据发生改变时，Vue都会重新解析，`getFullName（）`也会被重新执行
+
+
+
+### **计算属性**
+
+要用的属性不存在，要通过已有的属性（data中的那些变量）计算得来
+
+- 底层接住了`Object.defineproperty`方法提供的getter和setter
+- get函数什么时候执行？
+  - 初次读取时会执行一次
+  - 当以来的属性发生改变时会被再次调用
+- 优势：内部有缓存机制，效率更高，调试方便
+
+> 计算属性最终会出现在vm上，直接读取使用即可
+>
+> 如果计算属性要被修改，那必须写set函数去响应修改，且set函数中要引起计算时依赖的数据发生改变
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+<div id="root">
+    first name: <input type="text" v-model="firstName"><br>
+    last name: <input type="text" v-model="lastName"><br>
+    full name: <span>{{fullName}}</span>
+</div>
+<script>
+    const vm = new Vue({
+        el:'#root',
+        data:{
+            firstName:'Jaye',
+            lastName:'Liao'
+        },
+        computed:{
+          fullName:{
+            get(){
+              return this.firstName + '-' + this.lastName
+            },
+            set(value){
+              this.firstName, this.lastName = value.split('-')
+            }
+          }
+        }
+    })
+</script>
+</body>
+</html>
+```
+
