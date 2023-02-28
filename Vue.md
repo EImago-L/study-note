@@ -335,3 +335,72 @@ let person = {
 </html>
 ```
 
+
+
+### **键盘事件**
+
+1. Vue中常用的按键别名：
+   - 回车    enter
+   - 删除     delete（捕获删除和退格键）
+   - 退出    esc
+   - 空格    space
+   - 换行    tab（特殊，必须配合keydown去使用）
+   - 上    up
+   - 下    down
+   - 左    left
+   - 右    right
+2. Vue未提供别名的按键，可以使用按键原始的key值取绑定，的那要注意转为kebab-case（短横线命名）
+3. 系统修饰键（用法特殊）：ctrl、alt、shift、meta（可以理解为win键）
+   1. 配合keyup使用：按下修饰键的同时，再按下其他键，随后释放其他键，事件才被触发
+   2. 配合keydown使用：正常触发事件。
+4. 也可以使用keyCode去指定具体的按键（不推荐）
+5. Vue.config.keyCodes.自定义键名 = 键码，可以去定制按键别名
+
+```HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        input{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div id="root">
+    <h1>hello, {{name}}</h1>
+    <input type="text" placeholder="按下键盘查看提示" @keyup="showInfo">
+    enter：<input type="text" placeholder="按下回车提示输入" @keyup.enter="showInfo">
+    delete：<input type="text" placeholder="按下删除或退格键" @keyup.delete="showInfo">
+    esc：<input type="text" placeholder="按下esc" @keyup.esc="showInfo">
+    tab：<input type="text" placeholder="按下tab" @keydown.tab="showInfo">
+    ↑：<input type="text" placeholder="按下↑" @keydown.up="showInfo">
+    ↓：<input type="text" placeholder="按下↓" @keydown.down="showInfo">
+    ←：<input type="text" placeholder="按下←" @keydown.left="showInfo">
+    →：<input type="text" placeholder="按下→" @keydown.right="showInfo">
+    CapsLock：<input type="text" placeholder="按下大写锁定键" @keydown.caps-lock="showInfo">
+    ctrl+任意键：<input type="text" placeholder="按下ctrl+任意键" @keyup.ctrl="showInfo">
+    alt+任意键：<input type="text" placeholder="按下alt+任意键" @keyup.alt="showInfo">
+    shift+任意键：<input type="text" placeholder="按下shift+任意键" @keyup.shift="showInfo">
+    win+任意键：<input type="text" placeholder="按下win+任意键" @keyup.meta="showInfo">
+</div>
+<script>
+    const vm = new Vue({
+        el:'#root',
+        data:{
+            name:'JayeLiao'
+        },
+        methods:{
+            showInfo(event){
+                console.log(event.key, event.keyCode)
+            }
+        }
+    })
+</script>
+</body>
+</html>
+```
+
