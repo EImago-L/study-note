@@ -680,3 +680,129 @@ const vm = new Vue({
     })
 ```
 
+
+
+### **绑定样式**
+
+1. class样式
+   - 写法：class="XXX" XXX可以是字符串、对象、数组
+   - 字符串写法适用于：类名不确定，要动态的获取
+   - 对象写法适用于：要绑定多个样式，个数不确定，名字也不确定
+   - 数组写法适用于：要绑定多个样式，个数确定，名字也确定，动态的确定样式要不要用
+2. sytle样式
+   - :style="{fontSize:XXX}" 其中XXX是动态值
+   - :style="[a,b]" 其中a、b是样式对象
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .basic{
+            border: 1px black solid;
+            height: 200px;
+        }
+
+        .normal{
+            background-color: skyblue;
+        }
+        .happy{
+            background-color: lightseagreen;
+            border-color: yellow;
+        }
+        .angry{
+            background-color: red;
+        }
+
+        .style1{
+            font-size: 50px;
+        }
+        .style2{
+            border-radius: 10px;
+        }
+        .style3{
+            background: linear-gradient(blue, pink);
+        }
+
+    </style>
+</head>
+<body>
+<div id="root">
+<!--    绑定class样式--字符串写法:适用于样式的类名不确定，需要动态指定-->
+    <div class="basic" :class="mood" @click="changeMood"> {{name}} </div>
+    <br>
+
+<!--    绑定class样式--数组写法：适用于要绑定的样式个数不确定、名字也不确定-->
+    <div class="basic" :class="classArr" >{{name}}</div>
+    <br>
+<!--    绑定class样式--对象写法：适用于要绑定的样式个数确定、名字确定，但要动态的决定要不要用-->
+    <div class="basic" :class="classObj">{{name}}</div>
+    <br>
+
+<!--    绑定style样式--对象写法-->
+    <div class="basic" :style="styleObj">{{name}}</div>
+    <br>
+<!--    绑定style样式--数组写法-->
+    <div class="basic" :style="styleArr">{{name}}</div>
+    <br>
+</div>
+
+<script>
+    const vm = new Vue({
+        el:'#root',
+        data:{
+            name:'JayeLiao',
+            mood:'normal',
+            classArr:['style1', 'style2', 'style3'],
+            classObj:{
+                style1:false,
+                style2:false,
+            },
+            styleObj:{
+                fontSize:'60px',
+                color:'red'
+            },
+            styleArr:[
+                {
+                    fontSize:'60px',
+                    color:'blue'
+                },
+                {
+                    backgroundColor:'gray'
+                }
+            ]
+        },
+        methods:{
+            changeMood(){
+                const arr = ['normal', 'happy', 'angry']
+                const index = Math.floor(Math.random() * 3)
+                this.mood = arr[index]
+            }
+        }
+    })
+</script>
+</body>
+</html>
+```
+
+
+
+### **条件渲染**
+
+- v-if
+  - 写法：
+    - v-if="表达式"
+    - v-else-if="表达式"
+    - v-else="表达式"
+  - 适用于切换频率比较低的场景
+  - 不展示的DOM元素直接被移除
+  - v-if可以和v-else-if、v-else一起使用，但要求结构不能被“打断”
+- v-show
+  - 写法：v-show="表达式"
+  - 适用于：切换频率较高的场景
+  - 不展示的DOM元素未被移除，仅仅是使用样式隐藏掉
+
+>使用v-if时，元素可能无法获取到，而使用v-show一定可以获取到
